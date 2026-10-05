@@ -1,0 +1,138 @@
+class HusseinAdvmobprogCart {
+  final int id;
+  final List<HusseinAdvmobprogCartProduct> products;
+  final double total;
+  final double discountedTotal;
+  final int userId;
+  final int totalProducts;
+  final int totalQuantity;
+
+  HusseinAdvmobprogCart({
+    required this.id,
+    required this.products,
+    required this.total,
+    required this.discountedTotal,
+    required this.userId,
+    required this.totalProducts,
+    required this.totalQuantity,
+  });
+
+  // This converts the JSON data from the API into a HusseinAdvmobprogCart object.
+  factory HusseinAdvmobprogCart.fromJson(Map<String, dynamic> json) {
+    return HusseinAdvmobprogCart(
+      id: json['id'] ?? 0,
+
+      // Get all the products inside the cart and turn them into HusseinAdvmobprogCartProduct objects.
+      products: (json['products'] as List?)
+              ?.map(
+                (e) => HusseinAdvmobprogCartProduct.fromJson(
+                  e as Map<String, dynamic>,
+                ),
+              )
+              .toList() ??
+          [],
+
+      // Convert the numbers to double so they can be used for prices.
+      total: (json['total'] as num?)?.toDouble() ?? 0.0,
+      discountedTotal:
+          (json['discountedTotal'] as num?)?.toDouble() ?? 0.0,
+
+      userId: json['userId'] ?? 0,
+      totalProducts: json['totalProducts'] ?? 0,
+      totalQuantity: json['totalQuantity'] ?? 0,
+    );
+  }
+
+  // This converts the HusseinAdvmobprogCart object back into JSON data.
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+
+      // Convert each product back into JSON.
+      'products': products.map((e) => e.toJson()).toList(),
+
+      'total': total,
+      'discountedTotal': discountedTotal,
+      'userId': userId,
+      'totalProducts': totalProducts,
+      'totalQuantity': totalQuantity,
+    };
+  }
+}
+
+class HusseinAdvmobprogCartProduct {
+  // These are the details for one product inside the cart.
+  final int id;
+  final String title;
+  final String description;
+  final String category;
+  final double price;
+  final int quantity;
+  final double total;
+  final double discountPercentage;
+  final double discountedTotal;
+  final String thumbnail;
+  final String? brand;
+
+  HusseinAdvmobprogCartProduct({
+    required this.id,
+    required this.title,
+    required this.description,
+    required this.category,
+    required this.price,
+    required this.quantity,
+    required this.total,
+    required this.discountPercentage,
+    required this.discountedTotal,
+    required this.thumbnail,
+    this.brand,
+  });
+
+  // This takes the product data from JSON and creates a HusseinAdvmobprogCartProduct object.
+  factory HusseinAdvmobprogCartProduct.fromJson(Map<String, dynamic> json) {
+    return HusseinAdvmobprogCartProduct(
+      id: json['id'] ?? 0,
+      title: json['title'] ?? '',
+      description: json['description'] ?? '',
+      category: json['category'] ?? '',
+
+      // Make sure the price is stored as a double.
+      price: (json['price'] as num?)?.toDouble() ?? 0.0,
+
+      // This tells us how many of this product are in the cart.
+      quantity: json['quantity'] ?? 0,
+
+      total: (json['total'] as num?)?.toDouble() ?? 0.0,
+
+      // Store the discount percentage as a double.
+      discountPercentage:
+          (json['discountPercentage'] as num?)?.toDouble() ?? 0.0,
+
+      discountedTotal:
+          (json['discountedTotal'] as num?)?.toDouble() ?? 0.0,
+
+      // This is the product image URL.
+      thumbnail: json['thumbnail'] ?? '',
+
+      // Brand is optional, so it can be null.
+      brand: json['brand'],
+    );
+  }
+
+  // This converts the HusseinAdvmobprogCartProduct object back into JSON.
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'title': title,
+      'description': description,
+      'category': category,
+      'price': price,
+      'quantity': quantity,
+      'total': total,
+      'discountPercentage': discountPercentage,
+      'discountedTotal': discountedTotal,
+      'thumbnail': thumbnail,
+      'brand': brand,
+    };
+  }
+}

@@ -1,0 +1,61 @@
+name: hussein_advmobprog
+description: "A new Flutter project."
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.8.1
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # Cupertino icons for iOS-style iconography.
+  cupertino_icons: ^1.0.8
+  
+  # State management solution using inherited widgets and change notifiers.
+  provider: ^6.1.5
+  
+  # Screen utility for easily scaling screen and font sizes across different devices.
+  flutter_screenutil: ^5.9.3
+  
+  # Loads environment variables from a .env file.
+  flutter_dotenv: ^6.0.1
+  
+  # A composable, Future-based library for making HTTP requests.
+  http: ^1.2.0
+  # Kept at the same floor as the working reference project so this app
+  # resolves on the Flutter/Dart SDK installed on this machine.
+  shared_preferences: ^2.5.3
+
+  # Lab Activity 5 - Firebase Authentication
+  firebase_core: ^3.6.0
+  firebase_auth: ^5.3.1
+
+  # Lab Activity 6 - Cloud Firestore (real-time chat)
+  cloud_firestore: ^5.4.3
+
+
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  # Recommended lints for Flutter apps to encourage good coding practices.
+  flutter_lints: ^5.0.0
+
+flutter:
+  uses-material-design: true
+
+  # Asset bundles included in the app (both the general folder and specific logo image).
+  assets:
+    - assets/
+    - assets/images/
+    - assets/.env
+
+  # Custom font family registration.
+  fonts:
+    - family: Poppins
+      fonts:
+        - asset: assets/fonts/Poppins-Regular.ttf
